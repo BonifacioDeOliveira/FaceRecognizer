@@ -9,8 +9,7 @@ from pandas import Series, DataFrame
 def AddUser():
 
     faceID, face_name = DG.Add_User()
-    print(faceID)
-    print(face_name)
+
     with open('C:/Users/User Acer/Documents/GitHub/FaceRecognizer/Relacao_ID_Nome.csv', 'a') as f:
         writer = csv.writer(f)
         writer.writerow([faceID, face_name])

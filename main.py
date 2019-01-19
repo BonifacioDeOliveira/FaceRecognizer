@@ -2,7 +2,6 @@ import os
 import csv
 import DataGathering as DG
 import TrainingModel as TM
-import recognition as rec
 from pandas import Series, DataFrame
 
 
@@ -17,15 +16,14 @@ def AddUser():
 def train():
     TM.training()
 
-def Reco():
-    rec.recognize()
+
 
 #Tem como funcao adicionar um usuario
-AddUser()
+#AddUser()
 
 # Ao se adicionar um usuario deve se treinar o modelo
-train()
+#train()
 
 # Tem como funcao fazer o reconhecimento do user
-Reco()
+import recognition
 

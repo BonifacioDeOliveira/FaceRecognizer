@@ -39,7 +39,7 @@ def Add_User():
             cv2.imwrite("dataset/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
 
         #Display the resulting frame
-        cv2.imshow('Video',frame)
+            cv2.imshow('Video',frame)
 
         k = cv2.waitKey(100) & 0xFF
         if k == 27:

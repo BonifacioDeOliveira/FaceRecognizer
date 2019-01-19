@@ -12,17 +12,10 @@ def AddUser():
     with open('C:/Users/User Acer/Documents/GitHub/FaceRecognizer/Relacao_ID_Nome.csv', 'a') as f:
         writer = csv.writer(f)
         writer.writerow([faceID, face_name])
-
-def train():
     TM.training()
 
-
-
-#Tem como funcao adicionar um usuario
+#Tem como funcao adicionar um usuario e treinar um novo modelo
 #AddUser()
-
-# Ao se adicionar um usuario deve se treinar o modelo
-#train()
 
 # Tem como funcao fazer o reconhecimento do user
 import recognition

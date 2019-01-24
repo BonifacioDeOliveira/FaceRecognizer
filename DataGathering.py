@@ -1,16 +1,16 @@
 import cv2
 import os
+import tkinter
 
-def Add_User():
+
+
+def Add_User(face_id, face_name):
     cam = cv2.VideoCapture(0)
     cam.set(3, 640) # set video width
     cam.set(4, 480) # set video height
 
     # Frontal faces pattern
     face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-
-    face_id =int(input('\n Introduza o id do usuario e clique em enter: '))
-    face_name = raw_input('\n Introduza o nome do usuario: ')
 
     print("\n Inicializando a captura da face. Olhe para a camera e aguarde ...")
 
@@ -25,7 +25,7 @@ def Add_User():
         faces = face_detector.detectMultiScale(
             gray,
             scaleFactor=1.1,
-            minNeighbors=15,
+            minNeighbors=5,
             minSize=(30,30),
             flags=cv2.CASCADE_SCALE_IMAGE
         )
@@ -52,7 +52,6 @@ def Add_User():
     cam.release()
     cv2.destroyAllWindows()
 
-    return face_id, face_name
 
 
 #Al. Bonifacio de Oliveira - UEA

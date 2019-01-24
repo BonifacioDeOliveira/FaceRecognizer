@@ -3,6 +3,11 @@ import numpy as np
 import os
 import csv
 import pandas as pd
+import tkinter
+
+
+
+
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('rec_model/trainer.yml')
 cascadePath = "haarcascade_frontalface_default.xml"
@@ -12,7 +17,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 # iniciate id counter
 id = 0
 
-#Gera o velor de usuarios a partir do dataset
+#Gera o vetor de usuarios a partir do dataset
 datasetUsers = pd.read_csv("C:/Users/User Acer/Documents/GitHub/FaceRecognizer/Relacao_ID_Nome.csv")
 names = pd.DataFrame(datasetUsers, columns=['ID','Nome'])
 listausers = []
@@ -20,7 +25,6 @@ tam = names.shape[0]
 for i in range (tam):
     search_user = names.iloc[i]
     listausers.append(search_user[1])
-print(listausers)
 # Initialize and start realtime video capture
 cam = cv2.VideoCapture(0)
 cam.set(3, 640) # set video widht
@@ -35,7 +39,7 @@ while True:
     faces = faceCascade.detectMultiScale(
         gray,
         scaleFactor=1.1,
-        minNeighbors=15,
+        minNeighbors=5,
         minSize=(30,30),
         flags=cv2.CASCADE_SCALE_IMAGE
     )
@@ -47,7 +51,7 @@ while True:
         id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
 
         # Check if confidence is less them 100 ==> "0" is perfect match
-        if (confidence < 100):
+        if (confidence < 60):
             id = listausers[id]
             confidence = "  {0}%".format(round(100 - confidence))
         else:
@@ -65,3 +69,4 @@ while True:
 print("\n [INFO] Exiting Program and cleanup stuff")
 cam.release()
 cv2.destroyAllWindows()
+
